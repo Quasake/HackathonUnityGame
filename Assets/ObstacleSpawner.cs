@@ -1,35 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour {
-	public GameObject obstaclePrefab;
-	private GameManager gm;
+	private GameManager gameManager; // The game manager object
+	private float timeMod; // The time modifier that makes the spawn time less and less over time
+	private float lastSpawnTime; // The last time obstacles were spawned
+	private float lastModTime; // The last time the time modifier was increased
 
-	public float timer;
-	private float lastSpawnTime;
-	private float lastModTime;
-	private float timeMod;
-
-	public float startTime;
+	[SerializeField] private GameObject obstaclePrefab; // The obstacle prefab
+	[Space]
+	[SerializeField] private float timer; // The time between each spawn of obstacles
+	public float startTime; // The time that the game was started
 
 	private void Start ( ) {
-		gm = FindObjectOfType<GameManager>( );
+		gameManager = FindObjectOfType<GameManager>( ); // Instantiate the game manager object
 	}
 
 	private void Update ( ) {
-		if (gm.running) {
-			if (Time.time - lastModTime >= timer * 2 && timeMod <= 0.8f) {
-				timeMod += 0.01f;
+		if (gameManager.running) { // If the game is running
+			if (Time.time - lastModTime >= timer * 2 && timeMod <= 0.8f) { // If it is time to increase the time modifier
+				timeMod += 0.01f; // Increase the time modifier (make the spawning quicker)
 
 				lastModTime = Time.time;
 			}
 
-			if (Time.time - lastSpawnTime + timeMod >= timer) {
-				int count = Random.Range(1, 5);
+			if (Time.time - lastSpawnTime + timeMod >= timer) { // If it is time to spawn anther obstacle
+				int count = Random.Range(1, 5); // Get a random number of obstacles to spawn
 
-				for (int i = 0; i < count; i++) {
-					GameObject obstacle = Instantiate(obstaclePrefab, transform.position, Quaternion.identity);
+				for (int i = 0; i < count; i++) { // Spawn all the obstacles
+					Instantiate(obstaclePrefab, transform.position, Quaternion.identity);
 				}
 
 				lastSpawnTime = Time.time;
@@ -37,11 +35,11 @@ public class ObstacleSpawner : MonoBehaviour {
 		}
 	}
 
-	public void ResetObject ( ) {
+	public void ResetObject ( ) { // Called whenever the game is started
 		lastSpawnTime = Time.time;
 		startTime = Time.time;
 		timeMod = 0;
 
-		GetComponent<Rigidbody>( ).angularVelocity = Random.insideUnitSphere;
+		GetComponent<Rigidbody>( ).angularVelocity = Random.insideUnitSphere; // Give the object a random rotation
 	}
 }
