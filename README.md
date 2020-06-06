@@ -1,12 +1,14 @@
 ## How to Download Unity and Unity Hub
 
-The steps to download Unity and Unity Hub can be found [Here](https://docs.google.com/document/d/15NiVcG2Cs3mtyLjP3SllXkHrGloU9hATYiKMnP6-2aY/edit).
+The steps to download Unity and Unity Hub can be found [here](https://docs.google.com/document/d/15NiVcG2Cs3mtyLjP3SllXkHrGloU9hATYiKMnP6-2aY/edit).
 
 ## How to Download This Project For Your Own Use
 
 1. Click the **"Clone or Download"** button, and then click **"Download ZIP"**. Extract the ZIP folder once it has been downloaded.
 2. Go into Unity Hub and click the **"Add"** button in the **"Projects"** section. Navigate to the extracted folder (not the .zip file) and select the folder. This should then add the project to the list of projects in Unity Hub.
 3. Make sure you have the same Unity version downloaded to your computer (I made the project in version 2019.3.15f1), and it should work! Use my project if you ever break something and don't know how to change it back.
+
+*This project may change in the future if I find something to add or remove from it. If this happens, you need to download the project again in order to get the latest version*
 
 ## How to Export Your Game as a .exe File
 
